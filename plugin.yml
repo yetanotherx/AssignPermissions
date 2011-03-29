@@ -1,0 +1,13 @@
+name: AssignPermissions
+main: yetanotherx.bukkitplugin.AssignPermissions.AssignPermissions
+version: 1.0
+commands:
+    perm-add:
+        description: Add a user to a group
+        usage: /<command> username group
+    perm-del:
+        description: Remove a user from a group
+        usage: /<command> username
+    perm-list:
+        description: List all users in a group
+        usage: /<command> group
