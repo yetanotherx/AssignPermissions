@@ -23,7 +23,7 @@ import com.nijiko.permissions.PermissionHandler;
 import com.nijikokun.bukkit.Permissions.Permissions;
 
 /*
- * AssignPermissions Version 1.0 - Assign groups from the game
+ * AssignPermissions Version 1.1 - Assign groups from the game
  * Copyright (C) 2011 Yetanotherx <yetanotherx -a--t- gmail -dot- com>
  *
  * This program is free software: you can redistribute it and/or modify
@@ -123,6 +123,7 @@ public class AssignPermissions extends JavaPlugin {
     /**
      * Called when a user performs a command
      */
+    @Override
     public boolean onCommand(CommandSender sender, Command command, String commandLabel, String[] args) {
 
 	String[] split = args;
@@ -148,7 +149,8 @@ public class AssignPermissions extends JavaPlugin {
 				config.setProperty( "users." + split[0] + ".group", split[1] );
 				config.save();
 				player.sendMessage(ChatColor.AQUA + split[0] + " is now in the " + ChatColor.WHITE + split[1] + ChatColor.AQUA + " group!");
-				return true;
+				Permissions.reload();
+                                return true;
 			    }
 			    else {
 				player.sendMessage(ChatColor.WHITE + split[1] + ChatColor.RED + " is not a valid group!");
@@ -182,6 +184,7 @@ public class AssignPermissions extends JavaPlugin {
 
 			    config.setProperty( "users." + split[0] + ".group", "" );
 			    config.save();
+                            Permissions.reload();
 			    player.sendMessage(ChatColor.AQUA + split[0] + " is no longer in the " + ChatColor.WHITE + config.getString( "users." + split[0] + ".group" ) + ChatColor.AQUA + " group!");
 			    return true;
 
